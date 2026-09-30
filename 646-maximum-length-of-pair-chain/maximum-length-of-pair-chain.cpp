@@ -6,10 +6,10 @@ public:
         });
         int currEnd = -1001;
         int maxLen = 0;
-        for(int i=0;i<pairs.size();i++){
-            if(pairs[i][0] > currEnd){
+        for(auto& pair : pairs){
+            if(pair[0] > currEnd){
                 maxLen++;
-                currEnd = pairs[i][1];
+                currEnd = pair[1];
             }
         }
         return maxLen;
