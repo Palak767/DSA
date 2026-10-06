@@ -1,19 +1,19 @@
 class Solution {
 public:
-    int minAddToMakeValid(string s) { // sub-optimal sol
-        int count = 0;
-        stack<char> st;
+    int minAddToMakeValid(string s) { // optimal sol
+        int unmatchedClose = 0;
+        int unmatchedOpen = 0;
         for(char c : s){
             if(c == '('){
-                st.push(c);
+                unmatchedOpen++;
             }else{
-                if(!st.empty()){
-                    st.pop();
+                if(unmatchedOpen > 0){
+                    unmatchedOpen--;
                 }else{
-                    count++;
+                    unmatchedClose++;
                 }
             }
         }
-        return count + st.size();
+        return unmatchedClose + unmatchedOpen;
     }
 };
