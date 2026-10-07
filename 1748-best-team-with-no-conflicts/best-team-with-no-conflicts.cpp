@@ -1,16 +1,5 @@
 class Solution {
 public:
-    int solve(int i, int prev, vector<pair<int,int>>& players,vector<vector<int>>& dp){
-        int n = players.size();
-        if(i >= n) return 0;
-        if(dp[i][prev+1] != -1) return dp[i][prev+1];
-        int skip = solve(i+1,prev,players,dp);
-        int take = 0;
-        if(prev == -1 || players[i].first >= players[prev].first){
-            take = solve(i+1,i,players,dp) + players[i].first;
-        }
-        return dp[i][prev+1] = max(take,skip);
-    }
     int bestTeamScore(vector<int>& scores, vector<int>& ages) {
         int n = scores.size();
         vector<pair<int,int>> players(n);
@@ -21,7 +10,17 @@ public:
             if(a.second == b.second) return a.first < b.first;
             return a.second < b.second;
         });
-        vector<vector<int>> dp(n,vector<int>(n+1,-1));
-        return solve(0,-1,players,dp);
+        vector<int> dp(n+1,0);
+        int maxScore = 0;
+        for(int i=0;i<n;i++){
+            dp[i] = players[i].first;
+            for(int j=0;j<i;j++){
+                if(players[i].first >= players[j].first){
+                    dp[i] = max(dp[i],dp[j] + players[i].first);
+                }
+            }
+            maxScore = max(maxScore,dp[i]);
+        }
+        return maxScore;
     }
 };
