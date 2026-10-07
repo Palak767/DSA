@@ -1,6 +1,7 @@
 class Solution {
 public:
-    int solve(int i, string& s){
+    int myAtoi(string s) {
+        int i = 0;
         int n = s.size();
         while(i < n && s[i] == ' '){
             i++;
@@ -22,8 +23,5 @@ public:
             i++;
         }
         return (int)(res*sign);
-    }
-    int myAtoi(string s) {
-        return solve(0,s);
     }
 };
