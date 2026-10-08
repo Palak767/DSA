@@ -1,15 +1,15 @@
 class Solution {
 public:
-    int solve(int i, int j, vector<int>& cuts, vector<vector<int>>& dp){
+    int solve(int i, int j,vector<int>& cuts, vector<vector<int>>& dp){
         int n = cuts.size();
         if(j-i <= 1) return 0;
-        int minCost = INT_MAX;
         if(dp[i][j] != -1) return dp[i][j];
+        int minCuts = INT_MAX;
         for(int k=i+1;k<j;k++){
-            int cost = solve(i,k,cuts,dp) + solve(k,j,cuts,dp) + cuts[j]-cuts[i];
-            minCost = min(cost,minCost);
+            int cost = solve(i,k,cuts,dp) + solve(k,j,cuts,dp) + cuts[j] - cuts[i];
+            minCuts = min(minCuts,cost);
         }
-        return dp[i][j] = minCost;
+        return dp[i][j] = minCuts;
     }
     int minCost(int n, vector<int>& cuts) {
         cuts.push_back(0);
