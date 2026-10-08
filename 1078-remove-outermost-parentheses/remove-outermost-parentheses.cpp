@@ -1,17 +1,17 @@
 class Solution {
 public:
-    string removeOuterParentheses(string s) {  //sub-optimal
+    string removeOuterParentheses(string s) {
         string ans = "";
-        stack<char> st;
-        for(int c : s){
-            if(c == '(') {
-                if(!st.empty()){
+        int cnt = 0;
+        for(char c : s){
+            if(c == '('){
+                if(cnt > 0){
                     ans += c;
                 }
-                st.push(c);
+                cnt++;
             }else{
-                st.pop();
-                if(!st.empty()){
+                cnt--;
+                if(cnt > 0){
                     ans += c;
                 }
             }
