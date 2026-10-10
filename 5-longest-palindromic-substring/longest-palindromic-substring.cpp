@@ -1,21 +1,24 @@
 class Solution {
 public:
-    bool isPalindrome(string& s, int i, int j){
-        if(i >= j) return true;
-        if(s[i] != s[j]) return false;
-        return isPalindrome(s,i+1,j-1);
+    int expandAroundCenter(string& s, int left, int right){
+        while(left >= 0 && right < s.size() && s[left] == s[right]){
+            left--;
+            right++;
+        }
+        return right - left - 1;
     }
     string longestPalindrome(string s) {
-        int n = s.size();
-        if(n <= 1) return s;
-        for(int len=n;len>=0;len--){
-            for(int i=0;i<=n-len;i++){
-                int j = i + len - 1;
-                if(isPalindrome(s,i,j)){
-                    return s.substr(i,len);
-                }
+        if(s.empty()) return "";
+        int start = 0, maxLen = 0;
+        for(int i=0;i<s.size();i++){
+            int len1 = expandAroundCenter(s,i,i);
+            int len2 = expandAroundCenter(s,i,i+1);
+            int currLen = max(len1,len2);
+            if(currLen > maxLen){
+                maxLen = currLen;
+                start = i - (currLen - 1)/2;
             }
         }
-        return "";
+        return s.substr(start,maxLen);
     }
 };
