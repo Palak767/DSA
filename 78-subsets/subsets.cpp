@@ -8,7 +8,6 @@ public:
         solve(nums,output,i+1,ans);
         output.push_back(nums[i]);
         solve(nums,output,i+1,ans);
-        output.pop_back();
     }
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<vector<int>> ans;
