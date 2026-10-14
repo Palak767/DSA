@@ -9,7 +9,6 @@ public:
             }
             return sum;
         }
-        if(n - i < k) return INT_MAX;
         if(dp[i][k] != -1) return dp[i][k];
         int currSum = 0;
         int ans = INT_MAX;
