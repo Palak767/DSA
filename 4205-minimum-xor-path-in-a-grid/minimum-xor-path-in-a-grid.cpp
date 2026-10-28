@@ -6,7 +6,6 @@ public:
         if(i >= m || j >= n) return 1e9;
         currXOR ^= grid[i][j];
         if(i == m-1 && j == n-1) return currXOR;
-        if(currXOR >= 1024) return 1e9;
         if(dp[i][j][currXOR] != -1) return dp[i][j][currXOR];
         int right = solve(i,j+1,currXOR,grid,dp);
         int down = solve(i+1,j,currXOR,grid,dp);
