@@ -3,10 +3,10 @@ public:
     int minMoves2(vector<int>& nums) {
         int n = nums.size();
         sort(nums.begin(),nums.end());
-        int target = nums[n/2];
+        int median = nums[n/2];
         int moves = 0;
         for(int num : nums){
-            moves += abs(target - num);
+            moves += abs(num - median);
         }
         return moves;
     }
