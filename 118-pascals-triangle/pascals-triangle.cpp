@@ -3,7 +3,6 @@ public:
     vector<vector<int>> generate(int numRows) {
         vector<vector<int>> ans;
         vector<vector<int>> dp(numRows,vector<int>(numRows,0));
-        dp[0][0] = 1;
         for(int i=0;i<numRows;i++){
             vector<int> row;
             for(int j=0;j<=i;j++){
